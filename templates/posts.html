@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h3 class="heading">Image Compression Using k-means Clustering algorithm.</h3>
+
+<h5 class="info">Enter any image which you want to compress along with no. of colors. The range to color must be between 2 and 64. After compression there is significant decrease in size of image. Dimensions of image are maintained.</h5>
+
+   <div class="form">
+        <form method="POST" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+          {{ form.hidden_tag()}}
+         
+           <div class="form-group">
+                   {{form.picture.label(class="form-control-file")}}
+                   {{form.picture(class="form-control-label")}}
+                   {% if form.picture.errors%}
+                   {% for error in form.picture.errors%}
+                         <span class="text-danger">{{error}}</span></br>
+                     {%endfor%}
+                   {%endif%}
+            </div>
+             <div class="form-group">
+                   {{form.colors.label(class="form-control-label")}}
+                   {% if form.colors.errors %}
+                    {{ form.colors(class="form-control form-control-md is-invalid") }}
+                    <div class="invalid-feedback">
+                      {%for error in form.colors.errors%}
+                           <span>{{error}}</span>
+                      {%endfor%}
+                    </div>
+                   {%else%}
+                    {{form.colors(class="form-control form-control-md")}}
+                   {%endif%}
+            </div>
+            <div class="form-group">
+                   {{form.submit(class="btn btn-outline-info", onclick="$('#loading').show();")}}
+            </div>
+          
+          </div>
+        </form>
+  </div>
+
+<div id="loading" 
+style="display:none;
+margin-left:600px;
+height: 150px;
+width: 150px;">
+ <img src="static/salman.gif" alt=""> 
+<h4 style="margin-left:50px;">Please Wait!</h4>
+</div>  
+{% endblock content %}
