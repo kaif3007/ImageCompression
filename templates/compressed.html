@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+
+  <h3 class="text-center">
+  	<a href="{{ url_for('home') }}"> Try a different image </a>
+  </h3>
+
+
+ <div class="row">
+        <div class="col-md-6" align="right">
+          <img class="img-thumbnail rounded border border-dark image-left"
+          src="{{url_for('static',filename='uploads/'+p)}}">
+           
+          <h3 class="text-left">Your uploaded image</h3>
+         </div>
+        <div class="col-md-6">
+          <img class="img-thumbnail rounded border border-dark image-right"   
+          src="{{url_for('static',filename='kaif/'+p)}}">
+          <h3 class="text-right">Compressed image with only {{colors}} colors</h3>
+        </div>
+ </div>
+{% endblock content %}
